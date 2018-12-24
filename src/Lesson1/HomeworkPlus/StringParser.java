@@ -1,8 +1,9 @@
-package Lesson1;
+package Lesson1.HomeworkPlus;
 
 public class StringParser {
 
     String EOL = "\n"; // End Of Line sequence
+    String[] vowels = {"a", "o", "u", "i", "e", "y"};
 
     // The string was copy-pasted from the assignment file as-is
     // line breaks added by IDEA
@@ -33,5 +34,5 @@ public class StringParser {
     // Increment counter for every detected vowel
 
     // Print counter value after every substring scan
-    
+
 }
