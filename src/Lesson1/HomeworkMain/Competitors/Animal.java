@@ -1,14 +1,15 @@
 package Lesson1.HomeworkMain.Competitors;
 
 public class Animal implements Competitor {
-    String type;
-    String name;
 
-    int maxRunDistance;
-    int maxJumpHeight;
-    int maxSwimDistance;
+    private String type;
+    private String name;
 
-    boolean onDistance;
+    private int maxRunDistance;
+    private int maxJumpHeight;
+    private int maxSwimDistance;
+
+    private boolean onDistance;
 
     @Override
     public boolean isOnDistance() {
@@ -16,12 +17,14 @@ public class Animal implements Competitor {
     }
 
     public Animal(String type, String name, int maxRunDistance, int maxJumpHeight, int maxSwimDistance) {
+
         this.type = type;
         this.name = name;
         this.maxRunDistance = maxRunDistance;
         this.maxJumpHeight = maxJumpHeight;
         this.maxSwimDistance = maxSwimDistance;
         this.onDistance = true;
+
     }
 
     @Override
