@@ -13,6 +13,12 @@ public class Cross extends Obstacle {
 
     }
 
+    public void performCross(Team team) {
+
+
+
+    }
+
     @Override
     public void doIt(Competitor competitor) {
 

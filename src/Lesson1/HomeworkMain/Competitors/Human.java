@@ -11,7 +11,9 @@ public class Human implements Competitor {
 
     @Override
     public boolean isOnDistance() {
+
         return active;
+
     }
 
     public Human(String name) {
