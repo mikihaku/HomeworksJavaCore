@@ -1,7 +1,11 @@
-package Marathon;
+package Lesson1.HomeworkMain;
 
-import Marathon.Obstacle.Obstacle;
-import Marathon.Obstacle.Wall;
+import Lesson1.HomeworkMain.Competitors.Competitor;
+import Lesson1.HomeworkMain.Competitors.Cat;
+import Lesson1.HomeworkMain.Competitors.Human;
+import Lesson1.HomeworkMain.Competitors.Dog;
+import Lesson1.HomeworkMain.Obstacles.Obstacle;
+import Lesson1.HomeworkMain.Obstacles.Wall;
 
 public class Main {
     public static void main(String[] args) {

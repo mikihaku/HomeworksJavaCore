@@ -1,4 +1,4 @@
-package Marathon;
+package Lesson1.HomeworkMain.Competitors;
 
 public class Human implements Competitor {
     String name;

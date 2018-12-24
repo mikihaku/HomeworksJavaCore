@@ -1,8 +1,10 @@
-package Marathon;
+package Lesson1.HomeworkMain;
 
-import Marathon.Obstacle.Obstacle;
+import Lesson1.HomeworkMain.Competitors.Competitor;
+import Lesson1.HomeworkMain.Obstacles.Obstacle;
 
 public class Cross extends Obstacle {
+
     int length;
 
     public Cross(int length) {
@@ -13,4 +15,5 @@ public class Cross extends Obstacle {
     public void doIt(Competitor competitor) {
         competitor.run(length);
     }
+
 }

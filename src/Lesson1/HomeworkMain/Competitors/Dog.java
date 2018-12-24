@@ -1,4 +1,4 @@
-package Marathon;
+package Lesson1.HomeworkMain.Competitors;
 
 public class Dog extends Animal {
     public Dog(String name) {

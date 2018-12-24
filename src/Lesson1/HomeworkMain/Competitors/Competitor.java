@@ -1,4 +1,4 @@
-package Marathon;
+package Lesson1.HomeworkMain.Competitors;
 
 public interface Competitor {
     void run(int dist);

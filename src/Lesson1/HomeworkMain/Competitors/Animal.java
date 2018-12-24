@@ -1,4 +1,4 @@
-package Marathon;
+package Lesson1.HomeworkMain.Competitors;
 
 public class Animal implements Competitor {
     String type;
