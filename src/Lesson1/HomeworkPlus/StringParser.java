@@ -7,7 +7,7 @@ public class StringParser {
 
     // The string was copy-pasted from the assignment file as-is
     // line breaks added by IDEA
-    String test = "bc yfammacoqlwgjj yrtstrcw  hujqgqvqqjcrsdhdb\n" +
+    static String test = "bc yfammacoqlwgjj yrtstrcw  hujqgqvqqjcrsdhdb\n" +
                 " quajwsdnubbcpfrgqjc  sqxlo vcbqadqj j vloetrk e uhnc f s\n" +
                 " pptgqyiy mzceoha x zeq  z y  m icpjzv ec elg ag\n" +
                 "xzaip wpoivhpqmx uxcpulvbibhe ju jydwizx\n" +
@@ -25,14 +25,34 @@ public class StringParser {
                 "watdx bkfeiqci gavtoodlpeglarmwn szlm uxg nnduofzvgo xqgfb\n" +
                 "utdqjuqopxi fdczngozfwggefukpfwry jpdyqze  jevjs";
 
-    // Break the string into array of of strings by EOL
+    public static void main(String[] args) {
 
-    // Cycle through array elements
+        // Break the string into array of of strings by EOL
+        String[] broken = test.split("\\n", -1);
 
-    // Break every substring into characters
+        for(String s: broken) {
 
-    // Increment counter for every detected vowel
+            int counter = 0;
 
-    // Print counter value after every substring scan
+            String[] line = s.split("", -1);
+
+            for(String cha: line) {
+
+                switch (cha) {
+
+                    case "a" :  counter += 1; break;
+                    case "o" :  counter += 1; break;
+                    case "u" :  counter += 1; break;
+                    case "i" :  counter += 1; break;
+                    case "e" :  counter += 1; break;
+                    case "y" :  counter += 1; break;
+                    default: break;
+
+                }
+            }
+
+            System.out.println("Строка \"" + s + "\" --> " + counter + " гласных");
+        }
+    }
 
 }

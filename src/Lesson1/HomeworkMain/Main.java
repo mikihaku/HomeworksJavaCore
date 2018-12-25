@@ -15,7 +15,8 @@ public class Main {
 //        Course course = new Course(new Wall(12),
 //                                   new Water(35),
 //                                   new Cross(150),
-//                                   new Wall(9));
+//                                   new Wall(9),
+//                                   new Water(50));
 
         // Printing team description
         System.out.println("Полоса препятствий:\n");
