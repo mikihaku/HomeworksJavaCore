@@ -1,9 +1,13 @@
 package Lesson1.HomeworkMain.Competitors;
 
+import Lesson1.HomeworkMain.Obstacles.Obstacle;
+
 public interface Competitor {
-    void run(int dist);
-    void swim(int dist);
-    void jump(int height);
+
+    void go(Obstacle obstacle);
+    String getName();
+    String getType();
     boolean isOnDistance();
     void info();
+
 }

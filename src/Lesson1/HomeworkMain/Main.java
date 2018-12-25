@@ -1,27 +1,49 @@
 package Lesson1.HomeworkMain;
 
-import Lesson1.HomeworkMain.Competitors.Competitor;
-import Lesson1.HomeworkMain.Competitors.Cat;
-import Lesson1.HomeworkMain.Competitors.Human;
-import Lesson1.HomeworkMain.Competitors.Dog;
-import Lesson1.HomeworkMain.Obstacles.Obstacle;
-import Lesson1.HomeworkMain.Obstacles.Wall;
+import Lesson1.HomeworkMain.Competitors.*;
+import Lesson1.HomeworkMain.Obstacles.*;
 
 public class Main {
+
     public static void main(String[] args) {
-        Competitor[] competitors = {new Human("Боб"), new Cat("Барсик"), new Dog("Бобик")};
 
-        Obstacle[] course = {new Cross(80), new Wall(2), new Wall(1), new Cross(120)};
+        // Initialize an obstacle course
+        // Option 1. Generate automatically
+        Course course = new Course(7);
 
-        for (Competitor c : competitors) {
-            for (Obstacle o : course) {
-                o.doIt(c);
-                if (!c.isOnDistance()) break;
-            }
-        }
+        // Option 2. Pass obstacles manually
+//        Course course = new Course(new Wall(12),
+//                                   new Water(35),
+//                                   new Cross(150),
+//                                   new Wall(9));
 
-        for (Competitor c : competitors) {
-            c.info();
-        }
+        // Printing team description
+        System.out.println("Полоса препятствий:\n");
+
+        course.printCourseObstacles();
+
+        // Initialize a team
+        // Option 1. Generate automatically
+        Team team = new Team("CrazyBrains", 4); // Size is redundant, but whatever :)
+
+        // Option 2. Pass team members manually
+//        Team team = new Team("CrazyBrains", new Dog("Puppy"),
+//                                                  new Cat("Kitty"),
+//                                                  new Human("Kim"),
+//                                                  new Human("Jim"));
+
+        // Printing team description
+        System.out.println("\n Команда участник: " + team.getTeamName() + "\n");
+
+        team.printTeamMembers();
+
+        // Start the competition
+        System.out.println("Начинаем соревнование:\n");
+        course.perform(team);
+        System.out.println("\n Соревнование окончено!\n");
+
+        // Print team status
+        System.out.println("Результаты соревнования:\n");
+        team.showResults();
     }
 }

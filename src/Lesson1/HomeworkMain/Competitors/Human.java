@@ -1,7 +1,10 @@
 package Lesson1.HomeworkMain.Competitors;
 
+import Lesson1.HomeworkMain.Obstacles.*;
+
 public class Human implements Competitor {
-    String name;
+
+    private String name;
 
     int maxRunDistance;
     int maxJumpHeight;
@@ -18,14 +21,41 @@ public class Human implements Competitor {
 
     public Human(String name) {
         this.name = name;
-        this.maxRunDistance = 5000;
+        this.maxRunDistance = 1000;
         this.maxJumpHeight = 30;
-        this.maxSwimDistance = 200;
+        this.maxSwimDistance = 150;
         this.active = true;
     }
 
     @Override
-    public void run(int dist) {
+    public String getName() {
+
+        return name;
+
+    }
+
+    @Override
+    public String getType() {
+
+        return "Человек";
+
+    }
+
+    @Override
+    public void go(Obstacle obstacle) {
+
+        if(obstacle instanceof Cross)
+            run((int)obstacle.getSize());
+        else if(obstacle instanceof Water)
+            swim((int)obstacle.getSize());
+        else if(obstacle instanceof Wall)
+            jump(obstacle.getSize());
+        else
+            System.out.println("Неизвестное препятствие");
+
+    }
+
+    private void run(int dist) {
         if (dist <= maxRunDistance) {
             System.out.println(name + " хорошо справился с кроссом");
         } else {
@@ -34,8 +64,7 @@ public class Human implements Competitor {
         }
     }
 
-    @Override
-    public void jump(int height) {
+    private void jump(double height) {
         if (height <= maxJumpHeight) {
             System.out.println(name + " удачно перепрыгнул через стену");
         } else {
@@ -44,8 +73,7 @@ public class Human implements Competitor {
         }
     }
 
-    @Override
-    public void swim(int dist) {
+    private void swim(int dist) {
         if (dist <= maxSwimDistance) {
             System.out.println(name + " отлично проплыл");
         } else {
@@ -56,6 +84,6 @@ public class Human implements Competitor {
 
     @Override
     public void info() {
-        System.out.println(name + " - " + active);
+        System.out.println("Человек " + name + " - " + (active ? "пришел к финишу" : "сошел с дистанции"));
     }
 }

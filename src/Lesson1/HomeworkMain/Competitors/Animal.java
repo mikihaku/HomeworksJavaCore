@@ -1,5 +1,7 @@
 package Lesson1.HomeworkMain.Competitors;
 
+import Lesson1.HomeworkMain.Obstacles.*;
+
 public class Animal implements Competitor {
 
     private String type;
@@ -10,6 +12,34 @@ public class Animal implements Competitor {
     private int maxSwimDistance;
 
     private boolean onDistance;
+
+    @Override
+    public void go(Obstacle obstacle) {
+
+        if(obstacle instanceof Cross)
+            run((int)obstacle.getSize());
+        else if(obstacle instanceof Water)
+            swim((int)obstacle.getSize());
+        else if(obstacle instanceof Wall)
+            jump(obstacle.getSize());
+        else
+            System.out.println("Неизвестное препятствие");
+
+    }
+
+    @Override
+    public String getName() {
+
+        return name;
+
+    }
+
+    @Override
+    public String getType() {
+
+        return type;
+
+    }
 
     @Override
     public boolean isOnDistance() {
@@ -27,8 +57,7 @@ public class Animal implements Competitor {
 
     }
 
-    @Override
-    public void run(int dist) {
+    private void run(int dist) {
         if (dist <= maxRunDistance) {
             System.out.println(type + " " + name + " хорошо справился с кроссом");
         } else {
@@ -37,8 +66,7 @@ public class Animal implements Competitor {
         }
     }
 
-    @Override
-    public void jump(int height) {
+    private void jump(double height) {
         if (height <= maxJumpHeight) {
             System.out.println(type + " " + name + " удачно перепрыгнул через стену");
         } else {
@@ -47,8 +75,7 @@ public class Animal implements Competitor {
         }
     }
 
-    @Override
-    public void swim(int dist) {
+    private void swim(int dist) {
         if (maxSwimDistance == 0) {
             System.out.println(type + " " + name + " не умеет плавать");
             onDistance = false;
@@ -64,6 +91,6 @@ public class Animal implements Competitor {
 
     @Override
     public void info() {
-        System.out.println(type + " " + name + " - " + onDistance);
+        System.out.println(type + " " + name + " - " + (onDistance ? "пришел к финишу" : "сошел с дистанции"));
     }
 }
