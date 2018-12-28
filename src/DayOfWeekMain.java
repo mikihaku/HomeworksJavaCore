@@ -18,7 +18,7 @@ public class DayOfWeekMain {
         for (DayOfWeek day: DayOfWeek.values()) {
 
             // Enum позволяет создавать методы, так что можно вычислять значения внутри него
-            // Хорошо для инкапсуляции
+            // Правильно для инкапсуляции
             if (getWorkingHoursViaFunc(day) > 0)
                 System.out.println("До конца недели осталось " + getWorkingHoursViaFunc(day) + " часов ");
             else

@@ -2,13 +2,13 @@ public class Main {
 
     private static Integer arraySum = 0;
     private static int arraySizeLimit = 4;
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) {
 
-        System.out.println("Hello Java World!");
+        System.out.println("Hello Java World!\n");
 
         // Генератор входных данных
         int arraySize =  4; // Изменить для генерации ошибки по размеру массива
@@ -25,7 +25,7 @@ public class Main {
             }
         }
 
-        System.out.println("Массив поданный на вход в метод \n");
+        System.out.println("Массив поданный на вход: \n");
         PrintArray(test);
 
         // ---------------------------
@@ -57,7 +57,7 @@ public class Main {
 
                     } catch (NumberFormatException e) {
 
-                        throw new MyArrayDataException("Элемент массива невозможно представить как число по адресу array[" + i + "][" + q + "]", e);
+                        throw new MyArrayDataException("array[" + i + "][" + q + "]", e);
 
                     }
                 }
