@@ -39,12 +39,12 @@ public class Main {
         try {
 
             if(array.length != arraySizeLimit)
-                throw new MyArraySizeException("Неверный размер массива. Основной массив имеет размер " + array.length + ", требуется 4.");
+                throw new MyArraySizeException("Неверный размер массива. Основной массив имеет размер " + array.length + ", требуется " + arraySizeLimit + ".");
 
             for (int i = 0; i < array.length; i++) {
 
                 if(array[i].length != arraySizeLimit)
-                    throw new MyArraySizeException("Неверный размер массива. Внутрениий подмассив [" + i + "] имеет размер " + array[i].length + ", требуется 4.");
+                    throw new MyArraySizeException("Неверный размер массива. Внутрениий подмассив [" + i + "] имеет размер " + array[i].length + ", требуется " + arraySizeLimit + ".");
 
                 int element;
 
