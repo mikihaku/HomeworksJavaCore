@@ -1,19 +1,22 @@
 public class Main {
 
-    private static Integer arraySum;
+    private static Integer arraySum = 0;
     private static int arraySizeLimit = 4;
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
-
-        String[][] test = new String[4][4];
+        System.out.println("Hello Java World!");
 
         // Генератор входных данных
-        String[] elements = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "B", "Q"};
+        int arraySize =  4; // Изменить для генерации ошибки по размеру массива
+        String[][] test = new String[arraySize][arraySize];
+        String[] elements = {"0", "1", "2", "3", "4", "5", "A", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
 
-        for(int i = 0; i < arraySizeLimit; i++) {
-            for(int j = 0; j < arraySizeLimit; j++) {
+        for(int i = 0; i < arraySize; i++) {
+            for(int j = 0; j < arraySize; j++) {
 
                 int random = (int)(Math.random() * elements.length);
 
@@ -22,11 +25,12 @@ public class Main {
             }
         }
 
+        System.out.println("Массив поданный на вход в метод \n");
         PrintArray(test);
 
         // ---------------------------
 
-        // ArrayProcessor(test);
+        ArrayProcessor(test);
 
     }
 
@@ -40,7 +44,7 @@ public class Main {
             for (int i = 0; i < array.length; i++) {
 
                 if(array[i].length != arraySizeLimit)
-                    throw new MyArraySizeException("Неверный размер массива. Внутрениий массив [" + i + "] имеет размер " + array.length + ", требуется 4.");
+                    throw new MyArraySizeException("Неверный размер массива. Внутрениий подмассив [" + i + "] имеет размер " + array[i].length + ", требуется 4.");
 
                 int element;
 
@@ -49,11 +53,11 @@ public class Main {
                     try {
 
                         element = Integer.parseInt(array[i][q]);
-                        arraySum += element;
+                        arraySum = arraySum + element;
 
                     } catch (NumberFormatException e) {
 
-                        throw new MyArrayDataException("Элемент массива невозможно представить как число @ array[" + i + "][" + q + "]", e);
+                        throw new MyArrayDataException("Элемент массива невозможно представить как число по адресу array[" + i + "][" + q + "]", e);
 
                     }
                 }
@@ -61,21 +65,23 @@ public class Main {
 
         } catch (MyArrayDataException e) {
 
+            arraySum = null; // Хак чтобы убедиться в отсутствии результатов сложения
+
+            System.out.println(ANSI_RED + "Ошибка формата входных данных: \n" + ANSI_RESET);
             e.printStackTrace();
 
         } catch (MyArraySizeException e) {
 
+            arraySum = null; // Хак чтобы убедиться в отсутствии результатов сложения
+
+            System.out.println(ANSI_RED + "Ошибка размера массива: \n" + ANSI_RESET);
             e.printStackTrace();
 
         } finally {
 
             if(arraySum != null) {
 
-                System.out.println("Сумма элементов массива: " + arraySum.toString());
-
-            } else {
-
-                System.out.println("Во время суммирования возникли ошибки.");
+                System.out.println(ANSI_GREEN + "Сумма элементов массива: " + arraySum.toString() + ANSI_RESET);
 
             }
         }
@@ -90,5 +96,7 @@ public class Main {
 
             System.out.println(" ");
         }
+
+        System.out.println(" ");
     }
 }
