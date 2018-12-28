@@ -9,9 +9,24 @@ public class Main {
 
         String[][] test = new String[4][4];
 
-        // Generator :)
+        // Генератор входных данных
+        String[] elements = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "B", "Q"};
 
-        ArrayProcessor(test);
+        for(int i = 0; i < arraySizeLimit; i++) {
+            for(int j = 0; j < arraySizeLimit; j++) {
+
+                int random = (int)(Math.random() * elements.length);
+
+                test[i][j] = elements[random];
+
+            }
+        }
+
+        PrintArray(test);
+
+        // ---------------------------
+
+        // ArrayProcessor(test);
 
     }
 
@@ -20,7 +35,7 @@ public class Main {
         try {
 
             if(array.length != arraySizeLimit)
-                throw new MyArraySizeException("Неверный размер массива. Наружный массив имеет размер " + array.length + ", требуется 4.");
+                throw new MyArraySizeException("Неверный размер массива. Основной массив имеет размер " + array.length + ", требуется 4.");
 
             for (int i = 0; i < array.length; i++) {
 
@@ -38,7 +53,7 @@ public class Main {
 
                     } catch (NumberFormatException e) {
 
-                        throw new MyArrayDataException("Элемент массива невозможно конвертировать в число @ array[" + i + "][" + q + "]", e);
+                        throw new MyArrayDataException("Элемент массива невозможно представить как число @ array[" + i + "][" + q + "]", e);
 
                     }
                 }
@@ -63,6 +78,17 @@ public class Main {
                 System.out.println("Во время суммирования возникли ошибки.");
 
             }
+        }
+    }
+
+    // Функция для вывода двумерного массива в консоль
+    private static void PrintArray(String[][] arr) {
+
+        for (String[] q: arr) {
+
+            for (String j: q) System.out.print(j + " ");
+
+            System.out.println(" ");
         }
     }
 }
