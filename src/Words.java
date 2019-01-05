@@ -1,25 +1,19 @@
+import org.jetbrains.annotations.Contract;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class Words {
 
-    private String[] words;
-
-    public Words(String[] words) {
-
-        this.words = words;
-
-    }
-
-    public HashSet<String> getUniqueEntries(String[] words) {
+    static HashSet<String> getUniqueEntries(String[] words) {
 
         // Используем свойство HashSet сохранять только уникальные значения
         return new HashSet<>(Arrays.asList(words));
 
     }
 
-    public HashMap<String, Integer> getWordsCount(String[] words) {
+    static HashMap<String, Integer> getWordsCount(String[] words) {
 
         HashMap<String, Integer> counter = new HashMap<>();
 
