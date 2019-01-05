@@ -23,14 +23,14 @@ public class Main {
         // Задание 2
         PhoneBook phoneBook = new PhoneBook();
 
-        phoneBook.add("Potter", "+7");
-        phoneBook.add("Potter", "+7");
-        phoneBook.add("Potter", "+7");
+        phoneBook.add("Potter", "+79522088865");
+        phoneBook.add("Potter", "+79523088865");
+        phoneBook.add("Potter", "+79524088865");
 
-        phoneBook.add("Weasley", "+7");
-        phoneBook.add("Weasley", "+7");
+        phoneBook.add("Weasley", "+79533088865");
+        phoneBook.add("Weasley", "+79544088865");
 
-        phoneBook.add("Grainger", "+7");
+        phoneBook.add("Grainger", "+79112088865");
 
         ArrayList<String> numbers = phoneBook.get("Potter");
 
