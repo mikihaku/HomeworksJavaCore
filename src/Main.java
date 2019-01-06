@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Main {
 
@@ -47,6 +48,24 @@ public class Main {
         numbers = phoneBook.get("Dumbledore");
 
         System.out.println("Dumbledore" + numbers.toString());
+
+        // Задание на проверку паролей
+        System.out.println("\nВведите пароль отвечающий следующим требованиям:");
+        System.out.println("1. Пароль должен быть не менее 8ми символов.");
+        System.out.println("2. В пароле должно быть число");
+        System.out.println("3. В пароле должна быть хотя бы 1 строчная буква");
+        System.out.println("4. В пароле должна быть хотя бы 1 заглавная буква");
+        System.out.println("5. Не должно быть пробелов");
+        System.out.println("6. Должен быть спец. символ ( !@#$%^&*()_+=-{}][ )");
+        System.out.print("Пароль: ");
+
+        Scanner sc = new Scanner(System.in);
+        String password = sc.nextLine();
+
+        if(!PasswordVerifier.verifyPassword(password))
+            System.out.println("Не соответствует условиям");
+        else
+            System.out.println("Cоответствует условиям");
 
     }
 
