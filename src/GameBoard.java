@@ -2,12 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class GameBoard extends JFrame {
+class GameBoard extends JFrame {
 
     private Game game;
     private JPanel leftTeamList;
     private JPanel rightTeamList;
-    private int fieldWidth = 800;
 
     private JTextArea log;
 
@@ -15,7 +14,7 @@ public class GameBoard extends JFrame {
     private static final String assassinIcon = "A: ";
     private static final String doctorIcon = "D: ";
 
-    public GameBoard(Game _game) {
+    GameBoard(Game _game) {
 
         this.game = _game;
         initField();
@@ -23,6 +22,8 @@ public class GameBoard extends JFrame {
     }
 
     private void initField() {
+
+        int fieldWidth = 800;
 
         // Создаем игровое поле
         setBounds(100, 100, fieldWidth, 500);
@@ -37,9 +38,9 @@ public class GameBoard extends JFrame {
         JButton addToLeftButton  = new JButton("+");
         JButton addToRightButton = new JButton("+");
 
-        JComboBox classListLeft  = new JComboBox(classes);
+        JComboBox classListLeft  = new JComboBox<>(classes);
         classListLeft.setSelectedIndex(0);
-        JComboBox classListRight = new JComboBox(classes);
+        JComboBox classListRight = new JComboBox<>(classes);
         classListRight.setSelectedIndex(0);
 
         addToLeftButton.addActionListener(e -> game.addToLeftTeam(classListLeft));
@@ -102,13 +103,7 @@ public class GameBoard extends JFrame {
         setVisible(true);
     }
 
-    Game getGame() {
-
-        return game;
-
-    }
-
-    public void addHeroToLeftList(Hero hero) {
+    void addHeroToLeftList(Hero hero) {
 
         addHeroToList(leftTeamList, hero);
 
@@ -122,7 +117,7 @@ public class GameBoard extends JFrame {
 
     }
 
-    public void addHeroToRightList(Hero hero) {
+    void addHeroToRightList(Hero hero) {
 
         addHeroToList(rightTeamList, hero);
 
@@ -135,7 +130,7 @@ public class GameBoard extends JFrame {
         log.append("Герой добавлен в правую команду: " + hero.name + " - " + type + "\n");
     }
 
-    public void addLogLine(String line) {
+    void addLogLine(String line) {
 
         log.append(line + "\n");
 

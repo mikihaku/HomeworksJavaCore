@@ -8,11 +8,11 @@ class Game {
 
     // Команды
     private int maxTeamSize = 10;
-    LinkedList<Hero> teamLeft  = new LinkedList<>();
-    LinkedList<Hero> teamRight = new LinkedList<>();
+    private LinkedList<Hero> teamLeft  = new LinkedList<>();
+    private LinkedList<Hero> teamRight = new LinkedList<>();
 
-    ListIterator<Hero> teamLeftQueue = teamLeft.listIterator();
-    ListIterator<Hero> teamRigthQueue = teamRight.listIterator();
+    private int teamLeftQueue  = 0;
+    private int teamRightQueue = 0;
 
     // Рабочие переменные
     private byte winner;
@@ -20,8 +20,7 @@ class Game {
 
     // Ссылки
     private GameBoard board;
-    Random randomStep = new Random();
-    Random randomHealing = new Random();
+    private Random randomStep = new Random();
 
     public Game() {
 
@@ -40,8 +39,12 @@ class Game {
 
         board.addLogLine("Игра началась!");
 
+        resetHeroes();
+
         // Случайно выбираем кто ходит первым
         activeTeam = (byte)randomStep.nextInt(2);
+
+        printMessage("Первой ходит команда " + (activeTeam == 0 ? "слева" : "справа"));
 
         // Запускаем цикл, который будет работать пока есть живые в обеих командах
         while (bothTeamsAlive()) {
@@ -52,23 +55,50 @@ class Game {
             // Если наш герой не войн или ассассин
             if(hero instanceof Doctor) {
 
-                Hero target = getFriendTarget();
+                Hero target = getFriendTarget(hero);
                      target.getHealed(hero.heal());
+
+                printMessage("Врач " + hero.name + " лечит "
+                                     + target.name + " на "
+                                     + hero.heal() + " единиц");
+
             }
             else {
 
-                Hero target = getEnemyTarget(); // Случайно выбираем цель из другой команды
-                     target.getHit(hero.attack());
+                int damage = hero.attack();
 
+                Hero target = getEnemyTarget(); // Случайно выбираем цель из другой команды
+                     target.getHit(damage);
+
+                // Описание для журнала
+                if(hero instanceof Assassin) {
+
+                    printMessage("Ассассин " + hero.name + " наносит урон "
+                                             + target.name + " в "
+                                             + damage + " единиц");
+
+                }
+
+                if(hero instanceof Warrior) {
+
+                    printMessage("Войн " + hero.name + " наносит урон "
+                                         + target.name + " в "
+                                         + damage + " единиц");
+
+                }
+
+                if(!target.isAlive())
+                    printMessage("--> " + target.name + " мёртв :( <-- ");
             }
 
             // Передаём ход другой команде
             nextTeamMove();
+
         }
 
         // Объявляем победителя
         if(winner == 0) showMessage("Победила левая команда");
-        if(winner == 1) showMessage("Победила левая команда");
+        if(winner == 1) showMessage("Победила правая команда");
         if(winner == -1) showMessage("Внезапно никто не победил. Как так?");
     }
 
@@ -111,7 +141,7 @@ class Game {
             case "Doctor":  team.addLast(new Doctor(Heroes.getRandomParameter(100, 150),
                                                     Heroes.getRandomName(),
                                                     0,
-                                                    Heroes.getRandomParameter(75, 100))); break;
+                                                    Heroes.getRandomParameter(30, 40))); break;
             default:  team.addLast(new Warrior(Heroes.getRandomParameter(180, 250),
                                                Heroes.getRandomName(),
                                                Heroes.getRandomParameter(75, 90),
@@ -176,19 +206,28 @@ class Game {
         ListIterator<Hero> theTeamIterator;
 
         if(activeTeam == 0)
-            theTeamIterator = teamLeftQueue;
+            theTeamIterator = teamLeft.listIterator(teamLeftQueue);
         else
-            theTeamIterator = teamRigthQueue;
+            theTeamIterator = teamRight.listIterator(teamRightQueue);
 
         // Здесь мы точно знаем, что есть хотя бы один живой герой
         // Так что должны его найти за два прохода точно
 
         while(theTeamIterator.hasNext()) {
 
+            int index = theTeamIterator.nextIndex() + 1;
+
             Hero hero = theTeamIterator.next();
 
-            if(hero.isAlive())
+            if(hero.isAlive()) {
+
+                if(activeTeam == 0)
+                    teamLeftQueue = index;
+                else
+                    teamRightQueue = index;
+
                 return hero;
+            }
 
         }
 
@@ -196,18 +235,25 @@ class Game {
         while(theTeamIterator.hasPrevious()) theTeamIterator.previous();
         while(theTeamIterator.hasNext()) {
 
+            int index = theTeamIterator.nextIndex() + 1;
+
             Hero hero = theTeamIterator.next();
 
-            if(hero.isAlive())
+            if(hero.isAlive()) {
+
+                if(activeTeam == 0)
+                    teamLeftQueue = index;
+                else
+                    teamRightQueue = index;
+
                 return hero;
-
+            }
         }
-
 
         return null; // Чтобы IDEA не орала
     }
 
-    private Hero getFriendTarget() {
+    private Hero getFriendTarget(Hero self) {
 
         Hero hero;
         LinkedList<Hero> theTeam;
@@ -223,7 +269,7 @@ class Game {
 
             hero = theTeam.get(rand.nextInt(theTeam.size()));
 
-        } while (!hero.isAlive());
+        } while (!hero.isAlive() || !hero.equals(self));
 
         return hero;
 
@@ -258,5 +304,21 @@ class Game {
         else
             activeTeam = 0;
 
+    }
+
+    private void printMessage(String message) {
+
+        board.addLogLine(message);
+        //System.out.println(message);
+
+    }
+
+    private void resetHeroes() {
+
+        ListIterator<Hero> theTeamIterator1 = teamLeft.listIterator(0);
+        ListIterator<Hero> theTeamIterator2 = teamRight.listIterator(0);
+
+        while(theTeamIterator1.hasNext()) theTeamIterator1.next().reset();
+        while(theTeamIterator2.hasNext()) theTeamIterator2.next().reset();
     }
 }

@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Heroes {
+class Heroes {
 
-    public static final String[] classes = {"Assassin", "Doctor", "Warrior"};
+    static final String[] classes = {"Assassin", "Doctor", "Warrior"};
 
     private static final String[] names = {"Eddard Ned Stark",
                                             "Robert Baratheon",
@@ -34,7 +34,7 @@ public class Heroes {
 
     private static ArrayList<String> usedNames = new ArrayList<>();
 
-    public static String getRandomName() {
+    static String getRandomName() {
 
         String name;
 
@@ -51,7 +51,7 @@ public class Heroes {
 
     }
 
-    public static int getRandomParameter(int min, int max) {
+    static int getRandomParameter(int min, int max) {
 
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
@@ -68,8 +68,11 @@ public class Heroes {
 */
 abstract class Hero {
 
-    // здоровье героя
+    // текущее здоровье героя
     protected int health;
+
+    // здоровье героя
+    protected int healthInit;
 
     // имя героя
     protected String name;
@@ -81,10 +84,11 @@ abstract class Hero {
     protected int addHeal;
 
     // статус
-    protected boolean isAlive;
+    protected boolean isAlive = true;
 
     public Hero(int health, String name, int damage, int addHeal) {
         this.health = health;
+        this.healthInit = health;
         this.name = name;
         this.damage = damage;
         this.addHeal = addHeal;
@@ -119,6 +123,12 @@ abstract class Hero {
 
     }
 
+    public void reset() {
+
+        health  = healthInit;
+        isAlive = true;
+
+    }
 }
 
 /*
@@ -192,8 +202,8 @@ class Doctor extends Hero {
     @Override
     int attack() {
 
-        System.out.println("Доктор не может бить!");
-        return 0;
+        return damage;
+
     }
 
     @Override
@@ -203,9 +213,3 @@ class Doctor extends Hero {
 
     }
 }
-
-
-
-
-
-
