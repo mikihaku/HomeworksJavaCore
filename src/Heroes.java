@@ -63,6 +63,147 @@ public class Heroes {
     }
 }
 
+/*
+Абстрактный класс родитель для создания героев
+*/
+abstract class Hero {
+
+    // здоровье героя
+    protected int health;
+
+    // имя героя
+    protected String name;
+
+    // сколько урона может нанести герой
+    protected int damage;
+
+    // сколько здоровья может восстановть герой
+    protected int addHeal;
+
+    // статус
+    protected boolean isAlive;
+
+    public Hero(int health, String name, int damage, int addHeal) {
+        this.health = health;
+        this.name = name;
+        this.damage = damage;
+        this.addHeal = addHeal;
+    }
+
+    // метод нанесения удара
+    abstract int attack();
+
+    // метод лечения
+    abstract int heal();
+
+    // метод получения удара
+    public int getHealed(int effect) {
+
+        health += effect;
+
+        return health;
+    }
+
+    public int getHit(int effect) {
+
+        health -=  effect;
+
+        if(health <= 0) isAlive = false;
+
+        return health;
+    }
+
+    public boolean isAlive() {
+
+        return isAlive;
+
+    }
+
+}
+
+/*
+Класс воин для создания конкретной реализации героя
+*/
+class Warrior extends Hero {
+
+    public Warrior(int health, String type, int damage, int addHeal) {
+        super(health, type, damage, addHeal);
+    }
+
+    @Override
+    int attack() {
+
+        return damage;
+
+    }
+
+    @Override
+    int heal() {
+
+        System.out.println("Войны не умеют лечить!");
+        return 0;
+
+    }
+}
+
+/*
+Класс убийца для создания конкретной реализации героя
+*/
+class Assassin extends Hero {
+
+    Random random = new Random();
+
+    public Assassin(int heal, String name, int damage, int addHeal) {
+
+        super(heal, name, damage, addHeal);
+
+    }
+
+    @Override
+    int attack() {
+
+        // Критический удар стартует с вероятностью 10%
+        // Критический удар даёт 2х дамага
+        if(new Random().nextFloat() <= 0.1)
+            return damage * 2;
+        else
+            return damage;
+
+    }
+
+    @Override
+    int heal() {
+
+        System.out.println("Убийцы не умеют лечить!");
+        return 0;
+
+    }
+}
+
+/*
+Класс доктор для создания конкретной реализации героя
+*/
+class Doctor extends Hero {
+
+    public Doctor(int heal, String name, int damage, int addHeal) {
+        super(heal, name, damage, addHeal);
+    }
+
+    @Override
+    int attack() {
+
+        System.out.println("Доктор не может бить!");
+        return 0;
+    }
+
+    @Override
+    int heal() {
+
+        return addHeal;
+
+    }
+}
+
 
 
 

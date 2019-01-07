@@ -135,6 +135,11 @@ public class GameBoard extends JFrame {
         log.append("Герой добавлен в правую команду: " + hero.name + " - " + type + "\n");
     }
 
+    public void addLogLine(String line) {
+
+        log.append(line + "\n");
+
+    }
 
     private void addHeroToList(JPanel side, Hero hero) {
 
@@ -155,6 +160,7 @@ public class GameBoard extends JFrame {
     private JLabel createLabel(String name, String icon, int health, int damage, int healing) {
 
         JLabel l = new JLabel(icon + " " + name + " (H:" + health + " | D:" + damage + " | R:" + healing + ")");
+        //JLabel l = new JLabel("<html><strike>" + icon + " " + name + " (H:" + health + " | D:" + damage + " | R:" + healing + ") </strike><html>");
         l.setFont(new Font("Georgia", Font.PLAIN, 16));
 
         return l;
