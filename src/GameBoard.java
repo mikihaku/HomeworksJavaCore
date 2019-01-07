@@ -7,7 +7,9 @@ public class GameBoard extends JFrame {
     private Game game;
     private JPanel leftTeamList;
     private JPanel rightTeamList;
-    private int fieldWidth = 600;
+    private int fieldWidth = 800;
+
+    private JTextArea log;
 
     private static final String warriorIcon = "W: ";
     private static final String assassinIcon = "A: ";
@@ -86,7 +88,7 @@ public class GameBoard extends JFrame {
         startButton.setMargin(new Insets(41,5,46,5));
         startButton.addActionListener(e -> game.start());
 
-        JTextArea log = new JTextArea(5, 10);
+        log = new JTextArea(5, 10);
         log.setMargin(new Insets(10,10,10,10) );
         log.setFont(new Font("Courier New", Font.PLAIN, 15));
 
@@ -110,12 +112,27 @@ public class GameBoard extends JFrame {
 
         addHeroToList(leftTeamList, hero);
 
+        String type = "";
+
+        if(hero instanceof Warrior)  type = "войн";
+        if(hero instanceof Assassin) type = "ассассин";
+        if(hero instanceof Doctor)   type = "врач";
+
+        log.append("Герой добавлен в левую команду: " + hero.name + " - " + type + "\n");
+
     }
 
     public void addHeroToRightList(Hero hero) {
 
         addHeroToList(rightTeamList, hero);
 
+        String type = "";
+
+        if(hero instanceof Warrior)  type = "войн";
+        if(hero instanceof Assassin) type = "ассассин";
+        if(hero instanceof Doctor)   type = "врач";
+
+        log.append("Герой добавлен в правую команду: " + hero.name + " - " + type + "\n");
     }
 
 
@@ -123,9 +140,9 @@ public class GameBoard extends JFrame {
 
         String icon = "";
 
-        if(hero instanceof Warrior) icon = warriorIcon;
+        if(hero instanceof Warrior)  icon = warriorIcon;
         if(hero instanceof Assassin) icon = assassinIcon;
-        if(hero instanceof Doctor) icon = doctorIcon;
+        if(hero instanceof Doctor)   icon = doctorIcon;
 
         JLabel label = createLabel(hero.name, icon, hero.health, hero.damage, hero.addHeal);
 
@@ -137,7 +154,7 @@ public class GameBoard extends JFrame {
 
     private JLabel createLabel(String name, String icon, int health, int damage, int healing) {
 
-        JLabel l = new JLabel(icon + " " + name + " (" + health + " | " + damage + " | " + healing + ")");
+        JLabel l = new JLabel(icon + " " + name + " (H:" + health + " | D:" + damage + " | R:" + healing + ")");
         l.setFont(new Font("Georgia", Font.PLAIN, 16));
 
         return l;

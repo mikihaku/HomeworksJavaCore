@@ -65,19 +65,19 @@ class Game {
         switch (heroClass) {
 
             case "Assassin":  team.addLast(new Assassin(Heroes.getRandomParameter(110, 180),
-                                                       Heroes.getRandomAssassinName(),
+                                                       Heroes.getRandomName(),
                                                        Heroes.getRandomParameter(45, 65),
                                                        0)); break;
             case "Warrior":  team.addLast(new Warrior(Heroes.getRandomParameter(180, 250),
-                                                      Heroes.getRandomWarriorName(),
+                                                      Heroes.getRandomName(),
                                                       Heroes.getRandomParameter(75, 90),
                                                       0)); break;
             case "Doctor":  team.addLast(new Doctor(Heroes.getRandomParameter(100, 150),
-                                                    Heroes.getRandomDoctorName(),
+                                                    Heroes.getRandomName(),
                                                     0,
                                                     Heroes.getRandomParameter(75, 100))); break;
             default:  team.addLast(new Warrior(Heroes.getRandomParameter(180, 250),
-                                               Heroes.getRandomWarriorName(),
+                                               Heroes.getRandomName(),
                                                Heroes.getRandomParameter(75, 90),
                                                0)); break;
         }

@@ -1,57 +1,53 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Heroes {
 
     public static final String[] classes = {"Assassin", "Doctor", "Warrior"};
 
-    private static final String[] assassinNames = {"Eddard Ned Stark",
-                                                    "Robert Baratheon",
-                                                    "Jaime Lannister",
-                                                    "Catelyn Stark",
-                                                    "Cersei Lannister",
-                                                    "Daenerys Targaryen",
-                                                    "Jorah Mormont",
-                                                    "Viserys Targaryen"};
-    private static final String[] warriorNames = {"Jon Snow",
-                                                    "Sansa Stark",
-                                                    "Arya Stark",
-                                                    "Robb Stark",
-                                                    "Theon Greyjoy",
-                                                    "Bran Stark",
-                                                    "Joffrey Baratheon",
-                                                    "Sandor  Clegane",
-                                                    "Tyrion Lannister"};
-    private static final String[] doctorNames = {"Khal Drogo",
-                                                    "Davos Seaworth",
-                                                    "Samwell Tarly",
-                                                    "Stannis Baratheon",
-                                                    "Melisandre",
-                                                    "Jeor Mormont",
-                                                    "Bronn",
-                                                    "Varys",
-                                                    "Shae"};
+    private static final String[] names = {"Eddard Ned Stark",
+                                            "Robert Baratheon",
+                                            "Jaime Lannister",
+                                            "Catelyn Stark",
+                                            "Cersei Lannister",
+                                            "Daenerys Targaryen",
+                                            "Jorah Mormont",
+                                            "Viserys Targaryen",
+                                            "Jon Snow",
+                                            "Sansa Stark",
+                                            "Arya Stark",
+                                            "Robb Stark",
+                                            "Theon Greyjoy",
+                                            "Bran Stark",
+                                            "Joffrey Baratheon",
+                                            "Sandor  Clegane",
+                                            "Tyrion Lannister",
+                                            "Khal Drogo",
+                                            "Davos Seaworth",
+                                            "Samwell Tarly",
+                                            "Stannis Baratheon",
+                                            "Melisandre",
+                                            "Jeor Mormont",
+                                            "Bronn",
+                                            "Varys",
+                                            "Shae"};
 
-    public static String getRandomWarriorName() {
+    private static ArrayList<String> usedNames = new ArrayList<>();
 
-        int nameIndex  = (int)(Math.random() * warriorNames.length);
+    public static String getRandomName() {
 
-        return warriorNames[nameIndex];
+        String name;
 
-    }
+        do {
 
-    public static String getRandomAssassinName() {
+            int nameIndex  = (int)(Math.random() * names.length);
+            name = names[nameIndex];
 
-        int nameIndex  = (int)(Math.random() * assassinNames.length);
+        } while (usedNames.contains(name));
 
-        return assassinNames[nameIndex];
+        usedNames.add(name);
 
-    }
-
-    public static String getRandomDoctorName() {
-
-        int nameIndex  = (int)(Math.random() * doctorNames.length);
-
-        return doctorNames[nameIndex];
+        return name;
 
     }
 
