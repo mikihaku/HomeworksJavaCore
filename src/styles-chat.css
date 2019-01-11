@@ -1,0 +1,12 @@
+.root {
+    -fx-font-family: "Courier New";
+}
+
+#btn {
+    -fx-text-fill: green;
+    -fx-background-color: transparent;
+}
+
+#btn: hover {
+    -fx-text-fill: red;
+}

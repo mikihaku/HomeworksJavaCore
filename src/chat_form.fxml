@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<VBox alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="ChatController">
+    <stylesheets><URL value="@/styles-chat.css"/> </stylesheets>
+    <ScrollPane fx:id="sasd" VBox.vgrow="ALWAYS" >
+        <content>
+            <GridPane alignment="center"
+                      hgap="10"
+                      vgap="4"
+                      fx:id="base" >
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <columnConstraints>
+                    <ColumnConstraints minWidth="275" prefWidth="275" maxWidth="Infinity" halignment="left">
+                    </ColumnConstraints>
+                    <ColumnConstraints minWidth="275" prefWidth="275" maxWidth="Infinity" halignment="right">
+                    </ColumnConstraints>
+                </columnConstraints>
+
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="2" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="4" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="6" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="8" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="10" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="12" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="14" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="16" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="18" promptText="Left" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="0" GridPane.rowIndex="20" promptText="Left" />
+
+                <!-- Add Name Text Field -->
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Right" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Right" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Right" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="Right" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="7" promptText="Right" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="9" promptText="Right" />
+                <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="15" promptText="Right" />
+
+                <TextFlow
+                       GridPane.columnIndex="1"
+                       GridPane.rowIndex="21"
+                       GridPane.halignment="LEFT" textAlignment="LEFT">
+                    <GridPane.margin>
+                        <Insets top="10" right="0" bottom="10" left="0" />
+                    </GridPane.margin>
+                    <Text text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."  />
+                    <Text text="~ 12:34, 01 Mon 2018 " style="-fx-font-weight: bold; -fx-font-style: italic"/>
+                </TextFlow>
+            </GridPane>
+        </content>
+    </ScrollPane>
+    <HBox>
+        <TextField fx:id="textField" onAction="#sendMsg" promptText="Введите сообщение.." HBox.hgrow="ALWAYS" prefHeight="40" />
+        <Button fx:id="btn" onAction="#sendMsg" text="Send" />
+    </HBox>
+</VBox>

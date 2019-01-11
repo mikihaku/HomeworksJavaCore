@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane fx:controller="LoginFormController"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="center"
+          hgap="10"
+          vgap="10"
+          fx:id="base">
+    <stylesheets><URL value="@/styles-login.css"/> </stylesheets>
+    <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+    <columnConstraints>
+        <ColumnConstraints minWidth="200" prefWidth="200"
+                           maxWidth="Infinity" halignment="CENTER">
+        </ColumnConstraints>
+        <ColumnConstraints minWidth="200" prefWidth="200"
+                           maxWidth="Infinity" >
+        </ColumnConstraints>
+    </columnConstraints>
+
+
+    <ImageView id="boxImage"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="0"
+               GridPane.columnSpan="2"
+               GridPane.rowSpan="1"
+               GridPane.halignment="CENTER"
+               fitHeight="200"
+               fitWidth="400" >
+        <image>
+            <Image url="@img/post.png" />
+        </image>
+    </ImageView>
+
+
+    <!-- Добавляем заголовок -->
+    <Label text="Требуется аутентификация" fx:id="titleLabel"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="1"
+           GridPane.columnSpan="2"
+           GridPane.rowSpan="1"
+           GridPane.halignment="CENTER" >
+        <GridPane.margin>
+            <Insets top="20" right="0" bottom="20" left="0" />
+        </GridPane.margin>
+    </Label>
+
+    <Label text="ФИО " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <!-- Add Name Text Field -->
+    <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Label text="СНИЛС " GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <!-- Add Email Text Field -->
+    <TextField fx:id="snilsField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label text="ИНН " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <!-- Add Password Field -->
+    <TextField fx:id="innField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+
+
+    <Button fx:id="submitButton"
+            text="Войти"
+            prefWidth="100"
+            prefHeight="40"
+            defaultButton="true"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="5"
+            GridPane.columnSpan="2"
+            GridPane.rowSpan="1"
+            GridPane.halignment="CENTER"
+            onAction="#handleSubmitButtonAction">
+        <GridPane.margin>
+            <Insets top="20" right="0" bottom="20" left="0" />
+        </GridPane.margin>
+    </Button>
+</GridPane>
