@@ -1,0 +1,26 @@
+#base {
+    -fx-background-color: #0054A5;
+    -fx-font-family: "Courier New";
+
+}
+
+#titleLabel {
+   -fx-font-size: 18pt;
+   -fx-text-fill: white;
+}
+
+.label {
+   -fx-font-size: 14pt;
+   -fx-text-fill: white;
+}
+
+.button {
+    -fx-font-size: 14pt;
+    -fx-background-color: white;
+}
+
+.button:hover {
+    -fx-font-size: 14pt;
+    -fx-background-color: #008FEB;
+    -fx-text-fill: black;
+}
