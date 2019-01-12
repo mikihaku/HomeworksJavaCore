@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import java.net.URL?>
-
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
-<GridPane fx:controller="LoginFormController"
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<GridPane fx:controller="controllers.LoginFormController"
           xmlns:fx="http://javafx.com/fxml"
           alignment="center"
           hgap="10"
           vgap="10"
           fx:id="base">
-    <stylesheets><URL value="@/styles-login.css"/> </stylesheets>
+    <stylesheets><URL value="@/css/styles-login.css"/> </stylesheets>
     <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
     <columnConstraints>
         <ColumnConstraints minWidth="200" prefWidth="200"
@@ -27,7 +23,6 @@
         </ColumnConstraints>
     </columnConstraints>
 
-
     <ImageView id="boxImage"
                GridPane.columnIndex="0"
                GridPane.rowIndex="0"
@@ -37,10 +32,9 @@
                fitHeight="200"
                fitWidth="400" >
         <image>
-            <Image url="@img/post.png" />
+            <Image url="@../img/post.png" />
         </image>
     </ImageView>
-
 
     <!-- Добавляем заголовок -->
     <Label text="Требуется аутентификация" fx:id="titleLabel"
@@ -56,17 +50,15 @@
 
     <Label text="ФИО " GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <!-- Add Name Text Field -->
-    <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="fioField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Фамилия Имя Отчетство" />
 
     <Label text="СНИЛС " GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <!-- Add Email Text Field -->
-    <TextField fx:id="snilsField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="snilsField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="123-456-789 10" />
 
     <Label text="ИНН " GridPane.columnIndex="0" GridPane.rowIndex="4" />
     <!-- Add Password Field -->
-    <TextField fx:id="innField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-
+    <TextField fx:id="innField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="123456789012" />
 
     <Button fx:id="submitButton"
             text="Войти"
