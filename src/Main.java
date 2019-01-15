@@ -5,14 +5,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    static final int size = 10000000;
-    static final int h = size / 2;
-    static float[] arr = new float[size];
-    static ExecutorService executor = Executors.newFixedThreadPool(2);
+    private static final int size = 10000000;
+    private static final int h = size / 2;
+    private static float[] arr = new float[size];
+    private static ExecutorService executor = Executors.newFixedThreadPool(2);
 
     // Intermediate arrays
-    static float[] a1 = new float[h];
-    static float[] a2 = new float[h];
+    private static float[] a1 = new float[h];
+    private static float[] a2 = new float[h];
 
     public static void main(String[] args) throws Exception {
 
@@ -21,7 +21,7 @@ public class Main {
 
     }
 
-    public static void singleThread() {
+    private static void singleThread() {
 
         Arrays.fill(arr, 1);
 
@@ -29,7 +29,7 @@ public class Main {
 
         for(int i = 0; i < arr.length; i++) {
 
-            arr[i] = (float)(arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            arr[i] = (float)(arr[i] * Math.sin(0.2f + (float) i / 5) * Math.cos(0.2f + (float) i / 5) * Math.cos(0.4f + (float) i / 2));
 
         }
 
@@ -37,7 +37,7 @@ public class Main {
 
     }
 
-    public static void doubleThread() throws Exception {
+    private static void doubleThread()  {
 
         Arrays.fill(arr, 1);
 
@@ -56,7 +56,7 @@ public class Main {
 
             for(int i = 0; i < a1.length; i++) {
 
-                a1[i] = (float)(a1[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+                a1[i] = (float)(a1[i] * Math.sin(0.2f + (float) i / 5) * Math.cos(0.2f + (float) i / 5) * Math.cos(0.4f + (float) i / 2));
 
             }
 
@@ -69,7 +69,7 @@ public class Main {
 
             for(int i = 0; i < a2.length; i++) {
 
-                a2[i] = (float)(a2[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+                a2[i] = (float)(a2[i] * Math.sin(0.2f + (float) i / 5) * Math.cos(0.2f + (float) i / 5) * Math.cos(0.4f + (float) i / 2));
 
             }
 
@@ -83,7 +83,7 @@ public class Main {
 
     }
 
-    static void awaitTerminationAfterShutdown(ExecutorService threadPool, long a) {
+    private static void awaitTerminationAfterShutdown(ExecutorService threadPool, long a) {
         threadPool.shutdown();
         try {
             if (!threadPool.awaitTermination(60, TimeUnit.SECONDS)) {
